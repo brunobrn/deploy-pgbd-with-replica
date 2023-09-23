@@ -1,0 +1,1 @@
+docker exec -it deploy_pg_master_1 sh /etc/postgresql/query/partition-orders-pt1.sh
