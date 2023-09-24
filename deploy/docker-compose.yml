@@ -3,6 +3,7 @@ version: '3'
 services:
   pg_master:
     image: fariasbrunobrn/postgres-fully-extension:15.4
+    container_name: pg_master
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -14,6 +15,7 @@ services:
   
   pg_replica:
     image: fariasbrunobrn/postgres-fully-extension:15.4
+    container_name: pg_replica
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -25,17 +27,21 @@ services:
 
   boring_app:
     image: fariasbrunobrn/py_boring_app:latest
+    container_name: boring_app
     command: python get_quantity.py
 
   boring_insert:
     image: fariasbrunobrn/py_boring_insert:latest
+    container_name: boring_insert
     command: python insert.py
 
   boring_report_rr:
     image: fariasbrunobrn/py_boring_report_rr:latest
+    container_name: boring_report_rr
     command: python py_boring_report_rr.py
 
   pg_unbloat:
     image: fariasbrunobrn/pg_unbloat:latest
-    command: sleep 600
+    container_name: pg_unbloat
+    command: sleep 6000
 
