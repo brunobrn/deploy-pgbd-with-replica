@@ -66,5 +66,8 @@ psql:/etc/postgresql/query/migrate-data.sql:2: ERROR:  could not obtain lock on 
 
 5. I developed little python apps to connect on the database to exec inserts and selects on pg_master and also running little "reports" on the read replica side, i thinked interesting to simulate a full deployment.
 
+6. The image of docker for postgres container are a other little project of mine. If you wanna see: https://github.com/brunobrn/fully-extension-docker-postgres
+
+
 That's it!
 
