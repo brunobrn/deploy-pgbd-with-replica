@@ -12,6 +12,7 @@
 1. Execute the startup.sh script, this script will start all the infra and apps, doing the replication and executing the initial migration.
 
 ``` sh
+cd deploy
 sh startup.sh
 ```
 
@@ -44,7 +45,6 @@ docker exec -it pg_unbloat python exec_unbloat.py --host pg_master -U postgres -
 1. If we've got and error on the startup, we can clean the execution and execute again with no dependencies. To execute this script we need the sudo credentials, because we need to remove a shared resource by pg_master and pg_replica.
 
 ``` sh
-cd deploy
 sh clean-exec.sh
 ```
 
