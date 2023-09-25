@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  pg_master:
+    image: fariasbrunobrn/postgres-fully-extension:15.4
+    container_name: pg_master
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      # PGDATA: mypgdata
+      POSTGRES_DB: testDB
+    ports:
+      - "127.0.0.1:5432:5432"
+  
+  pg_replica:
+    image: fariasbrunobrn/postgres-fully-extension:15.4
+    container_name: pg_replica
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - ./data-slave:/var/lib/postgresql/data:z
+
+  boring_app:
+    image: fariasbrunobrn/py_boring_app:latest
+    container_name: boring_app
+    command: python get_quantity.py
+
+  boring_insert:
+    image: fariasbrunobrn/py_boring_insert:latest
+    container_name: boring_insert
+    command: python insert.py
+
+  boring_report_rr:
+    image: fariasbrunobrn/py_boring_report_rr:latest
+    container_name: boring_report_rr
+    command: python py_boring_report_rr.py
+
+  pg_unbloat:
+    image: fariasbrunobrn/pg_unbloat:latest
+    container_name: pg_unbloat
+    command: sleep 6000
+

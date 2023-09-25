@@ -1,0 +1,1 @@
+docker exec -it pg_master sh /etc/postgresql/query/partition-orders-pt2.sh
