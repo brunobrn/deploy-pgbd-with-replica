@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS orders (
 	primary key (id)
 );
 
+create index concurrently if not exists idx_orders_order_date on orders using btree (order_date);
+create index concurrently if not exists idx_orders_order_date_order_date on orders using btree (order_date,order_date);
+
 CREATE TABLE customers (
   customer_id INT PRIMARY KEY,
   shop_id INT,

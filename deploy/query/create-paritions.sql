@@ -16,6 +16,9 @@ CREATE TABLE IF NOT EXISTS orders_new (
 
 ALTER SEQUENCE IF EXISTS public.orders_new_seq OWNED BY orders_new.id;
 
+create index if not exists idx_orders_new_order_date on orders_new using btree (order_date);
+create index if not exists idx_orders_new_order_date_order_date on orders_new using btree (order_date,order_date);
+
 GRANT USAGE, SELECT ON SEQUENCE public.orders_new_seq TO boring_app;
 GRANT USAGE, SELECT ON SEQUENCE public.orders_new_seq TO boring_insert;
 
